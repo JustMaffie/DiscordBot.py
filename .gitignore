@@ -40,3 +40,4 @@ ENV/
 
 *.log
 config.json
+.idea
