@@ -1,11 +1,9 @@
 from discord.ext import commands
 import discord
 import traceback
+from discordbot.module import Module
 
-class EventsModule:
-    def __init__(self, bot):
-        self.bot = bot
-
+class Events(Module):
     async def on_ready(self):
         self.bot.owner = await self.bot.application_info()
         info = [str(self.bot.user), "Discord.py version: {}".format(discord.__version__), 'Shards: {}'.format(self.bot.shard_count), 'Guilds: {}'.format(len(self.bot.guilds)),
@@ -42,4 +40,4 @@ class EventsModule:
             self.bot.logger.exception(error)
 
 def setup(bot):
-    bot.add_cog(EventsModule(bot))
+    bot.load_module(Events)

@@ -49,6 +49,9 @@ class Bot(commands.AutoShardedBot):
         finally:
             loop.close()
 
+    def load_module(self, module):
+        self.add_cog(module(self))
+
 def make_bot(logger):
     config_file = "config.json"
     bot = Bot(config_file, logger)

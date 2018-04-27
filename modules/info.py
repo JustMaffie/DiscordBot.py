@@ -2,8 +2,9 @@ from discord.ext import commands
 import discord
 import platform
 import datetime
+from discordbot.module import Module
 
-class InfoModule:
+class Info(Module):
     def __init__(self, bot):
         self.bot = bot
 
@@ -57,6 +58,5 @@ class InfoModule:
         embed.set_footer(text='Requested by: {}'.format(ctx.author), icon_url=ctx.author.avatar_url)
         return await ctx.send(embed=embed)
 
-
 def setup(bot):
-    bot.add_cog(InfoModule(bot))
+    bot.load_module(Info)

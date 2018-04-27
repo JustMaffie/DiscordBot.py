@@ -2,11 +2,9 @@ from discord.ext import commands
 import discord
 import asyncio
 from discordbot.decorators import is_owner
+from discordbot.module import Module
 
-class AdminModule:
-    def __init__(self, bot):
-        self.bot = bot
-        
+class Admin(Module):
     @is_owner()
     @commands.command()
     async def reload(self, ctx, module):
@@ -99,4 +97,4 @@ class AdminModule:
         await ctx.send("```py\n{}```".format(result))
 
 def setup(bot):
-    bot.add_cog(AdminModule(bot))
+    bot.load_module(Admin)
